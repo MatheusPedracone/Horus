@@ -23,13 +23,13 @@ namespace Horus.Controllers
         {
             try
             {
-                var newModule = await _context.Modules.AddAsync(model);
+                var newModule = _context.Modules.Add(model);
                 await _context.SaveChangesAsync();
                 return Ok(newModule);
             }
             catch (Exception)
             {
-                throw;
+                return BadRequest(new { Erro = "Não foi possível criar modulo" });
             }
         }
     }

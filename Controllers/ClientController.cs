@@ -24,13 +24,16 @@ namespace Horus.Controllers
         {
             try
             {
-                var cnpjExists = await _context.Clients.Where(e => e.Cnpj == model.Cnpj).FirstOrDefaultAsync();
-                if (cnpjExists != null) return BadRequest(new { Erro = "cnpj já existe" });
+                var cnpj = await _context.Clients.Where(e => e.Cnpj == model.Cnpj).FirstOrDefaultAsync();
+                if (cnpj != null)
                 {
-                    var createSystemEvents = _context.Clients.Add(model);
-                    await _context.SaveChangesAsync();
-                    return Ok(model);
+                    return BadRequest(new { Erro = "cliente já existe" });
                 }
+
+                _context.Clients.Add(model);
+                await _context.SaveChangesAsync();
+                return Ok(model);
+
             }
             catch (Exception)
             {

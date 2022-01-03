@@ -23,13 +23,13 @@ namespace Horus.Controllers
         {
             try
             {
-                var newEvent = await _context.Events.AddAsync(model);
+                var newEvent = _context.Events.Add(model);
                 await _context.SaveChangesAsync();
                 return Ok(newEvent);
             }
             catch (Exception)
             {
-                throw;
+                return BadRequest(new { Erro = "Não foi possível criar evento" });
             }
         }
     }
