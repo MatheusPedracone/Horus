@@ -18,21 +18,5 @@ namespace Horus.Controllers
             _context = context;
         }
 
-        
-        // [HttpPost]
-        // public async Task<ActionResult<Client>> Post(Client model)
-        // {
-        //     try
-        //     {
-
-        //         var createSystemEvents = _context.Clients.AddAsync(model);
-        //         await _context.SaveChangesAsync();
-        //         return Ok(createSystemEvents);
-        //     }
-        //     catch (Exception)
-        //     {
-        //         return BadRequest(new { Erro = "Não foi possível criar cliente" });
-        //     }
-        // }
     }
 }

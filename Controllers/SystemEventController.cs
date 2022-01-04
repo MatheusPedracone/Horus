@@ -18,7 +18,5 @@ namespace Horus.Controllers
         {
             _context = context;
         }
-
-       
     }
 }
