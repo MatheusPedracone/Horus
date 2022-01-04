@@ -22,18 +22,25 @@ namespace Horus.Controllers
         [HttpPost("CreateClient")]
         public async Task<ActionResult<Client>> CreateClient([FromBody] Client model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { Erro = "Verifique os campos digitados!" });
+
+            var cnpj = await _context
+            .Clients
+            .AsNoTracking()
+            .Where(e => e.Cnpj == model.Cnpj)
+            .FirstOrDefaultAsync();
+
+            if (cnpj != null)
+            {
+                return NotFound(new { Erro = "cliente já existe" });
+            }
+
             try
             {
-                var cnpj = await _context.Clients.Where(e => e.Cnpj == model.Cnpj).FirstOrDefaultAsync();
-                if (cnpj != null)
-                {
-                    return BadRequest(new { Erro = "cliente já existe" });
-                }
-
                 _context.Clients.Add(model);
                 await _context.SaveChangesAsync();
                 return Ok(model);
-
             }
             catch (Exception)
             {
