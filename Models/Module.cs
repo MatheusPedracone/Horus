@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Horus.Models
 {
@@ -9,6 +5,6 @@ namespace Horus.Models
     {
     
         public Guid Id { get; set; }
-        public string? Form { get; set; } 
+        public string Form { get; set; } 
     }
 }

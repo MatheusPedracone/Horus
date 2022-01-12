@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Horus.Data;
 using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Horus.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ClientController : ControllerBase
     {
         private readonly DataContext _context;
@@ -19,23 +17,22 @@ namespace Horus.Controllers
             _context = context;
         }
 
-        [HttpPost("CreateClient")]
+        [HttpPost]
         public async Task<ActionResult<Client>> CreateClient([FromBody] Client model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { Erro = "Verifique os campos digitados!" });
+                return BadRequest(new { Erro = "Verifique os campos digitados!"});
 
-            var cnpj = await _context
+            var findClientCnpj = await _context
             .Clients
             .AsNoTracking()
             .Where(e => e.Cnpj == model.Cnpj)
             .FirstOrDefaultAsync();
 
-            if (cnpj != null)
+            if (findClientCnpj != null)
             {
                 return NotFound(new { Erro = "cliente já existe" });
             }
-
             try
             {
                 _context.Clients.Add(model);

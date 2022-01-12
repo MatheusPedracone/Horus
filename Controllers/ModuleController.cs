@@ -1,30 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Horus.Business;
 using Horus.Data;
 using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Horus.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ModuleController : ControllerBase
     {
-        private readonly DataContext _context;
-        public ModuleController(DataContext context)
+        private readonly IModuleBusiness _moduleBusiness;
+        public ModuleController(IModuleBusiness moduleBusiness)
         {
-            _context = context;
+            _moduleBusiness = moduleBusiness;
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateEvents(Module model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { Erro = "Verifique os campos digitados!"});
+
             try
             {
-                var newModule = _context.Modules.Add(model);
-                await _context.SaveChangesAsync();
+                var newModule = await _moduleBusiness.AddModule(model);
                 return Ok(newModule);
             }
             catch (Exception)

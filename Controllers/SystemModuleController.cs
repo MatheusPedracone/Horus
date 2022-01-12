@@ -1,22 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Horus.Business;
 using Horus.Data;
-using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Horus.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class SystemModuleController : ControllerBase
     {
-        private readonly DataContext _context;
-        public SystemModuleController(DataContext context)
+        private readonly ISystemModuleBusiness _systemModuleBusiness;
+        public SystemModuleController(ISystemModuleBusiness systemModuleBusiness)
         {
-            _context = context;
+            _systemModuleBusiness = systemModuleBusiness;
         }
-
     }
 }

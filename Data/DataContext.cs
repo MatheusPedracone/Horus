@@ -10,12 +10,12 @@ namespace Horus.Data
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        public DbSet<Client> Clients { get; set; } = null!;
-        public DbSet<Address> Addresses { get; set; } = null!;
-        public DbSet<Event> Events { get; set; } = null!;
-        public DbSet<SystemEvent> SystemEvents { get; set; } = null!;
-        public DbSet<Module> Modules { get; set; } = null!;
-        public DbSet<SystemModule> SystemModules { get; set; } = null!;
+        public DbSet<Client> Clients { get; set; } 
+        public DbSet<Address> Addresses { get; set; } 
+        public DbSet<Event> Events { get; set; } 
+        public DbSet<SystemEvent> SystemEvents { get; set; } 
+        public DbSet<Module> Modules { get; set; } 
+        public DbSet<SystemModule> SystemModules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

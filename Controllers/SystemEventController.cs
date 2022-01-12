@@ -1,22 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Horus.Business;
 using Horus.Data;
-using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Horus.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class SystemEventController : ControllerBase
     {
-        private readonly DataContext _context;
-        public SystemEventController(DataContext context)
+        private readonly ISystemEventBusiness _systemEventBusiness;
+        public SystemEventController(ISystemEventBusiness systemEventBusiness)
         {
-            _context = context;
+            _systemEventBusiness = systemEventBusiness;
         }
     }
 }
