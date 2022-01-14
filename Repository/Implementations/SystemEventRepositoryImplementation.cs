@@ -14,21 +14,42 @@ namespace Horus.Repository.Implementations
 
         public async Task<SystemEvent> SaveSystemEvents(SystemEvent model)
         {
-            var client = _context.Clients.FirstOrDefault(); 
+            var systemEvent = _context.SystemEvents
+                                                    .AsNoTracking()
+                                                    .Where(e => e.Date == model.Date)
+                                                    .FirstOrDefault();
+
+            var clientCnpj = _context.Clients
+                                            .AsNoTracking()
+                                            .Where(c => c.Cnpj == model.Client.Cnpj)
+                                            .Where(c => c.FantasyName == model.Client.FantasyName)
+                                            .FirstOrDefault();
 
             var findClientEvent = await _context.Events
                                                     .AsNoTracking()
                                                     .Where(e => e.EventName == model.Event.EventName)
                                                     .FirstOrDefaultAsync();
-                                    
-            // if (findClientEvent != null)
-            // {
-            //     return null;
-            // }
+
+            if (clientCnpj == null)
+            {
+                var newClient = new Client
+                {
+                    Cnpj = clientCnpj.Cnpj,
+                    FantasyName = clientCnpj.FantasyName,
+                };
+                _context.Clients.Add(newClient);
+                await _context.SaveChangesAsync();
+            }
+
+            if (findClientEvent != null)
+            {
+                systemEvent.Count = systemEvent.Count + model.Count;
+                _context.SaveChanges();
+            }
 
             try
             {
-                client.Id = model.ClientId;
+                clientCnpj.Id = systemEvent.ClientId;
                 _context.SystemEvents.Add(model);
                 await _context.SaveChangesAsync();
             }
