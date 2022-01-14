@@ -5,6 +5,6 @@ namespace Horus.Repository
 {
     public interface IModuleRepository
     {
-        Task<Module> AddModule(Module module);
+        Task<Module> AddModuleAsync(Module model);
     }
 }

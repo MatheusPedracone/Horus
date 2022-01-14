@@ -14,9 +14,9 @@ namespace Horus.Business.Implementations
         {
             _repository = repository;
         }
-        public async Task<Module> AddModule(Module module)
+        public async Task<Module> AddModuleAsync(Module module)
         {
-            return await _repository.AddModule(module);
+            return await _repository.AddModuleAsync(module);
         }
     }
 }

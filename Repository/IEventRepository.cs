@@ -5,6 +5,6 @@ namespace Horus.Repository
 {
     public interface IEventRepository
     {
-        Task<Event> AddEvents(Event events);
+        Task<Event> AddEventsAsync(Event model);
     }
 }

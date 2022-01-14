@@ -10,18 +10,18 @@ namespace Horus.Repository.Implementations
         {
             _context = context;
         }
-        public async Task<Module> AddModule(Module module)
+        public async Task<Module> AddModuleAsync(Module model)
         {
             try
             {
-                var newModule = _context.Modules.Add(module);
+                var newModule = _context.Modules.Add(model);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
-            return module;
+            return model;
         }
     }
 }

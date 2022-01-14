@@ -8,6 +8,7 @@ namespace Horus.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Cnpj { get; set; }
+        public string FantasyName { get; set; }
         public string ContributorType { get; set; }
         public string Cellphone { get; set; }
         public string Email { get; set; }

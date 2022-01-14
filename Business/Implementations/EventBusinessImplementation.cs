@@ -14,9 +14,9 @@ namespace Horus.Business.Implementations
         {
             _repository = repository;
         }
-        public async Task<Event> AddEvents(Event events)
+        public async Task<Event> AddEventsAsync(Event events)
         {
-            return await _repository.AddEvents(events);
+            return await _repository.AddEventsAsync(events);
         }
     }
 }

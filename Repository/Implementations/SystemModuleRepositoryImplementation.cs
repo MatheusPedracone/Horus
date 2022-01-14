@@ -10,7 +10,7 @@ namespace Horus.Repository.Implementations
         {
             _context = context;
         }
-        public Task<SystemModule> AddSystemEvents(SystemModule systemModule)
+        public Task<SystemModule> SaveSystemModules(SystemModule systemModule)
         {
             try
             {

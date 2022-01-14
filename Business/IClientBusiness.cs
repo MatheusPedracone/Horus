@@ -6,8 +6,8 @@ using Horus.Dtos;
 
 namespace Horus.Business
 {
-    public interface ISystemModuleBusiness
+    public interface IClientBusiness
     {
-        Task<SystemModuleDto> SaveSystemModuleAsync(SystemModuleDto systemModule);
+        Task<ClientRegisterDto> CreateClientAsync(ClientRegisterDto clientRegisterDto);
     }
 }

@@ -8,7 +8,7 @@ namespace Horus.Business
 {
     public interface IEventBusiness
     {
-        Task<Event> AddEvents(Event events);
+        Task<Event> AddEventsAsync(Event events);
     }
 }
 

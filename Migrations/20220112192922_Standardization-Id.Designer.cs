@@ -3,6 +3,7 @@ using System;
 using Horus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Horus.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220112192922_Standardization-Id")]
+    partial class StandardizationId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,10 +82,6 @@ namespace Horus.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
-
-                    b.Property<string>("FantasyName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()

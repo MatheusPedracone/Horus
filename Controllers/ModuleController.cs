@@ -24,7 +24,7 @@ namespace Horus.Controllers
 
             try
             {
-                var newModule = await _moduleBusiness.AddModule(model);
+                var newModule = await _moduleBusiness.AddModuleAsync(model);
                 return Ok(newModule);
             }
             catch (Exception)

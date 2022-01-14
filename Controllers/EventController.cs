@@ -13,7 +13,6 @@ namespace Horus.Controllers
         public EventController(IEventBusiness eventBusiness)
         {
             _eventBusiness = eventBusiness;
-
         }
 
         [HttpPost]
@@ -24,7 +23,7 @@ namespace Horus.Controllers
 
             try
             {
-                var newEvent = await _eventBusiness.AddEvents(model);
+                var newEvent = await _eventBusiness.AddEventsAsync(model);
                 return Ok(newEvent);
             }
             catch (Exception)

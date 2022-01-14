@@ -15,11 +15,13 @@ builder.Services.AddApiVersioning();
 
 builder.Services.AddScoped<IEventRepository, EventRepositoryImplementation>();
 builder.Services.AddScoped<IModuleRepository, ModuleRepositoryImplementation>();
+builder.Services.AddScoped<IClientRepository, ClientRepositoryImplementation>();
 builder.Services.AddScoped<ISystemModuleRepository, SystemModuleRepositoryImplementation>();
 builder.Services.AddScoped<ISystemEventRepository, SystemEventRepositoryImplementation>();
 
-builder.Services.AddScoped<IModuleBusiness, ModuleBusinessImplementation>();
 builder.Services.AddScoped<IEventBusiness, EventBusinessImplementation>();
+builder.Services.AddScoped<IModuleBusiness, ModuleBusinessImplementation>();
+builder.Services.AddScoped<IClientBusiness, ClientBusinessImplementation>();
 builder.Services.AddScoped<ISystemEventBusiness, SystemEventBusinessImplementation>();
 builder.Services.AddScoped<ISystemModuleBusiness, SystemModuleEventBusinessImplementation>();
 

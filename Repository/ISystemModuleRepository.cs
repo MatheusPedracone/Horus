@@ -4,6 +4,6 @@ namespace Horus.Repository
 {
     public interface ISystemModuleRepository
     {
-        Task<SystemModule> AddSystemEvents(SystemModule systemModule);
+        Task<SystemModule> SaveSystemModules(SystemModule model);
     }
 }

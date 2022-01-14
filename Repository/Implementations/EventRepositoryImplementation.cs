@@ -10,18 +10,18 @@ namespace Horus.Repository.Implementations
         {
             _context = context;
         }
-        public async Task<Event> AddEvents(Event events)
+        public async Task<Event> AddEventsAsync(Event model)
         {
             try
             {
-                var newEvent = _context.Events.Add(events);
+                var newEvent = _context.Events.Add(model);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
-            return events;
+            return model;
         }
     }
 }

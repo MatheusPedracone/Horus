@@ -12,37 +12,31 @@ namespace Horus.Repository.Implementations
             _context = context;
         }
 
-        public Task<SystemEvent> AddSystemEvent(Guid clientId, SystemEvent systemEvents)
+        public async Task<SystemEvent> SaveSystemEvents(SystemEvent model)
         {
-            throw new NotImplementedException();
-        }
+            var client = _context.Clients.FirstOrDefault(); 
 
-        public async Task<SystemEvent[]> SaveSystemEvents(Guid clientId, SystemEvent[] systemEvents)
-        {
+            var findClientEvent = await _context.Events
+                                                    .AsNoTracking()
+                                                    .Where(e => e.EventName == model.Event.EventName)
+                                                    .FirstOrDefaultAsync();
+                                    
+            // if (findClientEvent != null)
+            // {
+            //     return null;
+            // }
+
             try
             {
-                var getClientSystemEvents = _context.SystemEvents.Where(se => se.ClientId == clientId).ToArrayAsync();
-                if (getClientSystemEvents == null) return null;
-
-                foreach (var systemEvent in systemEvents)
-                {
-                    //crio
-                    if (systemEvent.Id == null)
-                    {
-                        _context.Add(systemEvents);
-                        await _context.SaveChangesAsync();
-                    }
-                    //faço a referência
-                    else
-                    {
-                         
-                    }
-                }
+                client.Id = model.ClientId;
+                _context.SystemEvents.Add(model);
+                await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
+            return null;
         }
     }
 }
