@@ -2,9 +2,7 @@ using Horus.Business;
 using Horus.Data;
 using Horus.Dtos;
 using Horus.Models;
-using Horus.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Horus.Controllers
 {
@@ -21,27 +19,16 @@ namespace Horus.Controllers
             _systemEventBusiness = systemEventBusiness;
         }
 
-        [HttpPut("")]
-        public async Task<ActionResult<SystemEvent>> SaveSystemEvents(SystemEvent model)
+        [HttpPost("")]
+        public async Task<ActionResult> SaveSystemEvents([FromBody] SystemEvent model)
         {
-            // var client = _context.Clients.FirstOrDefault();
-
-            // var systemEvent = _context.SystemEvents.FirstOrDefault();
-
-            // var findClientEvent = await _context.Events
-            //                                         .AsNoTracking()
-            //                                         .Where(e => e.EventName == model.Event.EventName)
-            //                                         .FirstOrDefaultAsync();
+            if (!ModelState.IsValid)
+                return BadRequest(new { Erro = "Verifique os campos digitados!" });
 
             try
             {
-                // if (findClientEvent == null)
-                // {
-                    _context.SystemEvents.AddRange(model);
-                    await _context.SaveChangesAsync();
-                // }
-
-                return Ok(model);
+               var createSystemEvent = await _systemEventBusiness.SaveSystemEventsAsync(model);
+                return Ok(createSystemEvent);
             }
             catch (Exception ex)
             {

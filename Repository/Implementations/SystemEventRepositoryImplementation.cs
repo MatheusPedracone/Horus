@@ -14,44 +14,47 @@ namespace Horus.Repository.Implementations
 
         public async Task<SystemEvent> SaveSystemEvents(SystemEvent model)
         {
-            var systemEvent = _context.SystemEvents
-                                                    .AsNoTracking()
-                                                    .Where(e => e.Date == model.Date)
-                                                    .FirstOrDefault();
+
 
             var clientCnpj = _context.Clients
                                             .AsNoTracking()
                                             .Where(c => c.Cnpj == model.Client.Cnpj)
-                                            .Where(c => c.FantasyName == model.Client.FantasyName)
                                             .FirstOrDefault();
 
-            var findClientEvent = await _context.Events
-                                                    .AsNoTracking()
-                                                    .Where(e => e.EventName == model.Event.EventName)
-                                                    .FirstOrDefaultAsync();
+            var findEvent = await _context.Events
+                                                .AsNoTracking()
+                                                .Where(e => e.EventName == model.Event.EventName)
+                                                .FirstOrDefaultAsync();
+
+            var systemEvent = _context.SystemEvents
+                                                .AsNoTracking()
+                                                .FirstOrDefault();
 
             if (clientCnpj == null)
-            {
-                var newClient = new Client
                 {
-                    Cnpj = clientCnpj.Cnpj,
-                    FantasyName = clientCnpj.FantasyName,
-                };
-                _context.Clients.Add(newClient);
-                await _context.SaveChangesAsync();
-            }
-
-            if (findClientEvent != null)
-            {
-                systemEvent.Count = systemEvent.Count + model.Count;
-                _context.SaveChanges();
-            }
+                    var newClient = new Client
+                    {
+                        Cnpj = clientCnpj.Cnpj,
+                        FantasyName = clientCnpj.FantasyName,
+                    };
+                    _context.Clients.Add(newClient);
+                    await _context.SaveChangesAsync();
+                }                                    
 
             try
             {
-                clientCnpj.Id = systemEvent.ClientId;
-                _context.SystemEvents.Add(model);
-                await _context.SaveChangesAsync();
+
+                if (findEvent != null)
+                {
+                    systemEvent.Count = systemEvent.Count + model.Count;
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    clientCnpj.Id = systemEvent.ClientId;
+                    _context.SystemEvents.Add(model);
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {

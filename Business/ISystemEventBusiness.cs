@@ -9,6 +9,6 @@ namespace Horus.Business
 {
     public interface ISystemEventBusiness
     {
-        // Task<SystemEvent> SaveSystemEventsAsync(SystemEvent model);
+        Task<SystemEvent> SaveSystemEventsAsync(SystemEvent model);
     }
 }

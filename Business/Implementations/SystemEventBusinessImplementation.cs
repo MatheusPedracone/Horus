@@ -15,9 +15,10 @@ namespace Horus.Business.Implementations
         {
             _repository = repository;
         }
-        // public async Task<SystemEvent> SaveSystemEventsAsync(SystemEvent model)
-        // {
-        //     return await _repository.SaveSystemEvents(model);
-        // }
+
+        public async Task<SystemEvent> SaveSystemEventsAsync(SystemEvent model)
+        {
+            return await _repository.SaveSystemEvents(model);
+        }
     }
 }
