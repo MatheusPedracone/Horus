@@ -11,6 +11,5 @@ namespace Horus.Models
         public int AdressNumber { get; set; }
         public string UF { get; set; } 
         public Guid ClientId { get; set; }
-        public Client Client { get; set; }
     }
 }

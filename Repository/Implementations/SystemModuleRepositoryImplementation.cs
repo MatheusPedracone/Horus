@@ -1,4 +1,5 @@
 using Horus.Data;
+using Horus.Dtos;
 using Horus.Models;
 
 namespace Horus.Repository.Implementations
@@ -10,16 +11,10 @@ namespace Horus.Repository.Implementations
         {
             _context = context;
         }
-        public Task<SystemModule> SaveSystemModules(SystemModule systemModule)
+
+        public Task<ClientSystemModuleDto> SaveSystemModules(ClientSystemModuleDto clientSystemModuleDto)
         {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw new NotImplementedException();
         }
     }
 }

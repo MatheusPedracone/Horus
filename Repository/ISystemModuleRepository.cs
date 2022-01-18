@@ -1,9 +1,10 @@
+using Horus.Dtos;
 using Horus.Models;
 
 namespace Horus.Repository
 {
     public interface ISystemModuleRepository
     {
-        Task<SystemModule> SaveSystemModules(SystemModule model);
+        Task<ClientSystemModuleDto> SaveSystemModules(ClientSystemModuleDto clientSystemModuleDto);
     }
 }

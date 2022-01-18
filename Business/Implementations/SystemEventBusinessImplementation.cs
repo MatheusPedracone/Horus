@@ -10,15 +10,15 @@ namespace Horus.Business.Implementations
 {
     public class SystemEventBusinessImplementation : ISystemEventBusiness
     {
-        private readonly ISystemEventRepository _repository;
-        public SystemEventBusinessImplementation(ISystemEventRepository repository)
+        private readonly ISystemEventRepository _systemEventRepository;
+        public SystemEventBusinessImplementation(ISystemEventRepository systemEventRepository)
         {
-            _repository = repository;
+            _systemEventRepository = systemEventRepository;
         }
 
-        public async Task<SystemEvent> SaveSystemEventsAsync(SystemEvent model)
+        public async Task<ClientSystemEventsDto> SaveSystemEventsAsync(ClientSystemEventsDto clientSystemEventsDto)
         {
-            return await _repository.SaveSystemEvents(model);
+            return await _systemEventRepository.SaveSystemEvents(clientSystemEventsDto);
         }
     }
 }
