@@ -1,10 +1,7 @@
-
 using Horus.Business;
-using Horus.Data;
 using Horus.Dtos;
 using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Horus.Controllers
 {
@@ -37,10 +34,10 @@ namespace Horus.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult<Client>> Get([FromBody] Client client)
+        public async Task<ActionResult<Client>> GetClientAsync([FromBody] Client clientRegisterDto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { Erro = "Verifique os campos digitados!"});
+                return BadRequest(new { Erro = "Verifique os campos digitados!" });
 
             try
             {
@@ -48,23 +45,7 @@ namespace Horus.Controllers
             }
             catch (Exception)
             {
-                return BadRequest(new { Erro = "Não foi possível criar cliente!"});
-            }
-        }
-
-        [HttpPut("")]
-        public async Task<ActionResult<ClientSystemEventsDto>> PutclientSystemEventsDto([FromBody] ClientSystemEventsDto clientSystemEventsDto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(new { Erro = "Verifique os campos digitados!"});
-
-            try
-            {
-                return Ok(clientSystemEventsDto);
-            }
-            catch (Exception)
-            {
-                return BadRequest(new { Erro = "Não foi possível criar cliente!"});
+                return BadRequest(new { Erro = "Não foi possível criar cliente" });
             }
         }
     }

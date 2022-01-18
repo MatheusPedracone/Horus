@@ -3,6 +3,7 @@ using Horus.Data;
 using Horus.Dtos;
 using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Horus.Controllers
 {
@@ -20,15 +21,14 @@ namespace Horus.Controllers
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> SaveSystemEvents([FromBody] SystemEvent model)
+        public async Task<ActionResult> SaveSystemEvents([FromBody] ClientSystemEventsDto model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { Erro = "Verifique os campos digitados!" });
 
             try
             {
-               var createSystemEvent = await _systemEventBusiness.SaveSystemEventsAsync(model);
-                return Ok(createSystemEvent);
+                return Ok();
             }
             catch (Exception ex)
             {

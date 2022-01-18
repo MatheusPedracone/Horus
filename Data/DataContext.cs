@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Horus.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,12 +17,7 @@ namespace Horus.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Client>(entity =>
-
-                entity.HasOne(x => x.Address)
-                .WithOne(x => x.Client)
-                .HasForeignKey<Address>(x => x.ClientId));
-
+           
             builder.Entity<Client>(entity =>
             {
                 entity.HasIndex(u => u.Email)
@@ -36,13 +27,6 @@ namespace Horus.Data
                 entity.HasIndex(u => u.Cellphone)
                 .IsUnique();
 
-                entity.HasMany(c => c.SystemEvents)
-               .WithOne(se => se.Client)
-               .HasForeignKey(x => x.ClientId);
-
-                entity.HasMany(c => c.SystemModules)
-                .WithOne(sm => sm.Client)
-                .HasForeignKey(x => x.ClientId);
             });
         }
     }

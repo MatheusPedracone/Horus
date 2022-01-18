@@ -1,5 +1,4 @@
 using Horus.Business;
-using Horus.Data;
 using Horus.Models;
 using Microsoft.AspNetCore.Mvc;
 
