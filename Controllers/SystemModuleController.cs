@@ -16,19 +16,19 @@ namespace Horus.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateSystemEvents(SystemModuleDto model)
+        public async Task<ActionResult> CreateSystemEvents(ClientSystemModuleDto clientSystemModuleDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { Erro = "Verifique os campos digitados!"});
 
              try
             {
-                var newSystemModule = await _systemModuleBusiness.SaveSystemModuleAsync(model);
+                var newSystemModule = await _systemModuleBusiness.SaveSystemModuleAsync(clientSystemModuleDto);
                 return Ok(newSystemModule);
             }
             catch (Exception)
             {
-                return BadRequest(new { Erro = "Não foi possível criar modulo" });
+                return BadRequest(new { Erro = "Não foi possível criar modulo do sistema!" });
             }
         }
     }

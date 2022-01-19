@@ -7,6 +7,5 @@ namespace Horus.Models
         public Guid ModuleId { get; set; }
         public long Count { get; set; }
         public DateTime Date { get; set; }
-        public Guid ClientId { get; set; }
     }
 }

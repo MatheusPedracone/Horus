@@ -6,9 +6,9 @@ using Horus.Dtos;
 
 namespace Horus.Business.Implementations
 {
-    public class SystemModuleEventBusinessImplementation : ISystemModuleBusiness
+    public class SystemModuleBusinessImplementation : ISystemModuleBusiness
     {
-        public Task<SystemModuleDto> SaveSystemModuleAsync(SystemModuleDto systemModule)
+        public Task<ClientSystemModuleDto> SaveSystemModuleAsync(ClientSystemModuleDto clientSystemModuleDto)
         {
             throw new NotImplementedException();
         }

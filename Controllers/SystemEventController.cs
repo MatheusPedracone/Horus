@@ -13,22 +13,22 @@ namespace Horus.Controllers
     public class SystemEventController : ControllerBase
     {
         private readonly ISystemEventBusiness _systemEventBusiness;
-        public readonly DataContext _context;
-        public SystemEventController(ISystemEventBusiness systemEventBusiness, DataContext context)
+        public SystemEventController(ISystemEventBusiness systemEventBusiness)
         {
-            _context = context;
             _systemEventBusiness = systemEventBusiness;
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> SaveSystemEvents([FromBody] ClientSystemEventsDto model)
+        public async Task<ActionResult> SaveSystemEvents([FromBody] ClientSystemEventsDto clientSystemEventsDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { Erro = "Verifique os campos digitados!" });
 
             try
             {
-                return Ok();
+                var newSystemEvent = await _systemEventBusiness.SaveSystemEventsAsync(clientSystemEventsDto);
+                return Ok(newSystemEvent);
+                
             }
             catch (Exception ex)
             {

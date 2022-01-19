@@ -9,14 +9,14 @@ namespace Horus.Business.Implementations
 {
     public class ModuleBusinessImplementation : IModuleBusiness
     {
-        private readonly IModuleRepository _repository;
-        public ModuleBusinessImplementation(IModuleRepository repository)
+        private readonly IModuleRepository _moduleRepository;
+        public ModuleBusinessImplementation(IModuleRepository moduleRepository)
         {
-            _repository = repository;
+            _moduleRepository = moduleRepository;
         }
         public async Task<Module> AddModuleAsync(Module module)
         {
-            return await _repository.AddModuleAsync(module);
+            return await _moduleRepository.AddModuleAsync(module);
         }
     }
 }

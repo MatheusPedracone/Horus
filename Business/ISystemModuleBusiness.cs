@@ -8,6 +8,6 @@ namespace Horus.Business
 {
     public interface ISystemModuleBusiness
     {
-        Task<SystemModuleDto> SaveSystemModuleAsync(SystemModuleDto systemModule);
+        Task<ClientSystemModuleDto> SaveSystemModuleAsync(ClientSystemModuleDto clientSystemModuleDto);
     }
 }

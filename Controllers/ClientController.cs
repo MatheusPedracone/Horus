@@ -32,21 +32,5 @@ namespace Horus.Controllers
                 return BadRequest(new { Erro = "Não foi possível criar cliente" });
             }
         }
-
-        [HttpGet("")]
-        public async Task<ActionResult<Client>> GetClientAsync([FromBody] Client clientRegisterDto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(new { Erro = "Verifique os campos digitados!" });
-
-            try
-            {
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return BadRequest(new { Erro = "Não foi possível criar cliente" });
-            }
-        }
     }
 }
